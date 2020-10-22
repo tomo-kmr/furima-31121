@@ -79,9 +79,15 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it 'パスワードは、半角英数字混合での入力しないと登録できない' do
+      it 'パスワードは、半角英数字混合での入力しないと登録できない(英字のみ)' do
         @user.password = 'asdfgh'
         @user.password_confirmation = 'asdfgh'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+      end
+      it 'パスワードは、半角英数字混合での入力しないと登録できない(数字のみ)' do
+        @user.password = '123456'
+        @user.password_confirmation = '123456'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
@@ -101,7 +107,7 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name kana お名前カナ(全角) は全角カナを使用してください')
       end
-      it 'パユーザー本名の名のフリガナは、全角（カタカナ）での入力しないと登録できない' do
+      it 'ユーザー本名の名のフリガナは、全角（カタカナ）での入力しないと登録できない' do
         @user.first_name_kana = 'たろう'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name kana お名前カナ(全角) は全角カナを使用してください')
