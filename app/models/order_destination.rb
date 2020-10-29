@@ -7,7 +7,7 @@ class OrderDestination
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'は-を入れて入力してください' }
     validates :address_pref_id, numericality: { other_than: 1 }
     validates :address_city, :address_num
-    validates :phone_number, format: { with: /\A[0-9]{11}+\z/, message: 'は半角数字11桁で入力してください' }
+    validates :phone_number, format: { with: /\A[0-9]{,11}\z/, message: 'は半角数字のみで11桁以内で入力してください' }
     validates :token
   end
   def save

@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
 
   def move_to_top
     item = Item.find(params[:item_id])
-    redirect_to root_path if current_user.id == item.user_id
+    redirect_to root_path if current_user.id == item.user_id || Order.exists?(item_id: params[:item_id])
   end
 
   def pay_item
