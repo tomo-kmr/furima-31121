@@ -34,7 +34,7 @@ RSpec.describe OrderDestination, type: :model do
       it '都道府県が選択されていない状態だと保存できないこと' do
         @order_destination.address_pref_id = 1
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Address pref must be other than 1")
+        expect(@order_destination.errors.full_messages).to include('Address pref must be other than 1')
       end
       it '市区町村が空だと保存できないこと' do
         @order_destination.address_city = ''
