@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_top
   before_action :set_item
+  before_action :move_to_top
 
   def index
     @order_destination = OrderDestination.new
@@ -28,8 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_top
-    item = Item.find(params[:item_id])
-    redirect_to root_path if current_user.id == item.user_id || Order.exists?(item_id: params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id || Order.exists?(item_id: @item.id)
   end
 
   def pay_item
@@ -42,6 +41,6 @@ class OrdersController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
 end
