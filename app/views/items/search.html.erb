@@ -1,0 +1,25 @@
+<%= render "shared/header" %>
+
+<%# 商品検索結果 %>
+<div class='item-contents'>
+    <h2 class='title'>商品検索結果</h2>
+    <h2 class='title'>検索結果は <%=@items.count%>件です</h2>
+    <ul class='item-lists'>
+       <% if @items.present? %> 
+        <%#商品がある場合 %>
+        <%= render partial: 'item', collection: @items %>
+      <% else %>
+        <%#商品がない場合 %>
+        <li class='list'>
+          <%= link_to '#' do %>
+          <%= image_tag "urikiremashita.png", class: "item-img" %>
+          <div class='item-info'>
+            <h3 class="item-name urikire">
+              違うキーワードもお試し下さい
+            </h3>
+          </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
