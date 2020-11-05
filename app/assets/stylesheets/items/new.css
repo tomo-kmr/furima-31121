@@ -227,3 +227,8 @@
 .inc {
   font-size: 13px;
 }
+/* 追加実装 */
+#image-list img{
+  width: 50%;
+  height: auto;
+}

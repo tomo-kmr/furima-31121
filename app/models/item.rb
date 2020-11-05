@@ -24,7 +24,7 @@ class Item < ApplicationRecord
   has_one :order
 
   def self.search(search)
-    if search != ""
+    if search != ''
       Item.where('name LIKE(?)', "%#{search}%")
     else
       Item.all
